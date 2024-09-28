@@ -1,0 +1,65 @@
+### base setting
+task_name: "twitter_15_bert_bottom-vit_mner"
+text_data_dir: "./dataset/mner/twitter2015/" # twitter2017, twitter2015
+model_type: "BertBottomVit"
+model_name_or_path: "BertBottomVit8"
+text_model_type: "bert"
+text_model_name_or_path: "./prev_trained_model/bert-base-uncased"
+
+image_data_dir: "./dataset/mner/twitter2015_images/" # twitter2015_images, twitter2017_images
+vision_model_type: "vit"
+vision_model_name_or_path: './prev_trained_model/vit-base-patch16-224'
+
+### multi task
+use_bio_class: True
+use_cls_class: True
+
+### Model
+model_architecture: "MFD"
+# feature extraction
+dis_img_sort: True
+use_position: True
+# label embedding
+boundary: BIOES
+# MNER classification
+use_diff_text2img: True
+trans_clssifier: True
+transformer_layer_number: 5
+# learning rate
+is_diff_lr: True
+bottom_lr: 3e-5
+top_lr: 1e-3
+is_change_text_hidden_dropout: True
+is_change_image_hidden_dropout: True
+image_hidden_dropout: 0.1
+text_hidden_dropout: 0.1
+# optimizer
+warmup_proportion: 0.2
+weight_decay: 5e-2
+
+### fixed para setting
+output_dir: "./outputs/twitter_15_bert_bottom-vit_mner/"
+train_file: "train.tsv"
+dev_file: "dev.tsv"
+test_file: "test.tsv"
+tagging_schema: "MNER"
+local_rank: -1
+max_steps: -1
+no_cuda:
+seed: 42
+gradient_accumulation_steps: 1
+adam_epsilon: 1e-8
+fp16: False
+fp16_opt_level: O1
+max_grad_norm: 1.0
+evaluate_during_training: True
+do_train: True
+do_predict: True
+max_seq_length: 256
+per_gpu_train_batch_size: 8
+n_gpu: 1
+learning_rate: 3e-5
+num_train_epochs: 15.0
+logging_steps: 500
+save_steps: 250
+per_gpu_eval_batch_size: 8

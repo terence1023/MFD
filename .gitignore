@@ -1,0 +1,5 @@
+
+prev_trained_model/*
+outputs/*
+dataset/*
+wandb/*
