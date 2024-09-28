@@ -1,0 +1,725 @@
+Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+task_name: twitter_15_bert_bottom-vit_mner
+text_data_dir: ./dataset/mner/twitter2015/
+model_type: bertbottomvit
+model_name_or_path: BertBottomVit8
+text_model_type: bert
+text_model_name_or_path: ./prev_trained_model/bert-base-uncased
+image_data_dir: ./dataset/mner/twitter2015_images/
+vision_model_type: vit
+vision_model_name_or_path: ./prev_trained_model/vit-base-patch16-224
+use_bio_class: True
+use_cls_class: True
+model_architecture: BertBottomVitForATETwoLabelEmbeddingCross_8_diff_textemb_changeLinear_pure
+dis_img_sort: True
+use_position: True
+boundary: BIOES
+use_diff_text2img: True
+trans_clssifier: True
+transformer_layer_number: 5
+is_diff_lr: True
+bottom_lr: 3e-5
+top_lr: 1e-3
+is_change_text_hidden_dropout: True
+is_change_image_hidden_dropout: True
+image_hidden_dropout: 0.1
+text_hidden_dropout: 0.1
+warmup_proportion: 0.2
+weight_decay: 5e-2
+output_dir: ./outputs/twitter_15_bert_bottom-vit_mner/bertbottomvit
+train_file: train.tsv
+dev_file: dev.tsv
+test_file: test.tsv
+tagging_schema: MNER
+local_rank: -1
+max_steps: -1
+no_cuda: None
+seed: 42
+gradient_accumulation_steps: 1
+adam_epsilon: 1e-8
+fp16: False
+fp16_opt_level: O1
+max_grad_norm: 1.0
+evaluate_during_training: True
+do_train: True
+do_predict: True
+max_seq_length: 256
+per_gpu_train_batch_size: 8
+n_gpu: 1
+learning_rate: 3e-5
+num_train_epochs: 15.0
+logging_steps: 500
+save_steps: 250
+per_gpu_eval_batch_size: 8
+similarity_map_dir: ./outputs/twitter_15_bert_bottom-vit_mner/similary_map/2024-09-28-11-56-44
+device: cuda
+ResNet.make_stage(first_stride=) is deprecated!  Use 'stride_per_block' or 'stride' instead.
+ResNet.make_stage(first_stride=) is deprecated!  Use 'stride_per_block' or 'stride' instead.
+ResNet.make_stage(first_stride=) is deprecated!  Use 'stride_per_block' or 'stride' instead.
+[Checkpointer] Loading from ./prev_trained_model/bua-caffe-frcn-r152.pth ...
+Training/evaluation parameters <__main__.ARGS object at 0x7f55b8ef68d0>
+Start Time is 2024-09-28 11:56:53
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_train_BertBottomVit8_256
+***** Running training *****
+  Num examples = 4000
+  Num Epochs = 15
+  Instantaneous batch size per GPU = 8
+  Total train batch size (w. parallel, distributed & accumulation) = 8
+  Gradient Accumulation steps = 1
+  Total optimization steps = 7500
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.37031397523899234 *****
+***** The dev BIO Class Loss is 0.09629698842763901 *****
+***** The dev ClS Class Loss is 0.11404606699943542 *****
+  The 0 Epochs
+per:     , P: 0.8109, R: 0.8080, F1: 0.8094 
+loc:     , P: 0.7918, R: 0.7356, F1: 0.7627 
+org:     , P: 0.6139, R: 0.3927, F1: 0.4790 
+misc:    , P: 0.3654, R: 0.0868, F1: 0.1402 
+step: 500, P: 0.7598, R: 0.6143, F1: 0.6794 
+boundary: , P: 0.8402, R: 0.6792, F1: 0.7512 
+boundary: , boundary_error: 0.1598
+category: , ACC: 0.9044
+category: , category_error: 0.0956
+Number  : , predict_nums: 1245
+Number  : , boundary_right_nums: 1046
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.3495356155884354 *****
+***** The test BIO Class Loss is 0.09035872668027878 *****
+***** The test ClS Class Loss is 0.10902061313390732 *****
+  The 0 Epochs
+per:     , P: 0.8425, R: 0.8268, F1: 0.8346 
+loc:     , P: 0.7991, R: 0.7344, F1: 0.7654 
+org:     , P: 0.6383, R: 0.4374, F1: 0.5191 
+misc:    , P: 0.2886, R: 0.0801, F1: 0.1254 
+step: 500, P: 0.7709, R: 0.6261, F1: 0.6910 
+boundary: , P: 0.8592, R: 0.6978, F1: 0.7701 
+boundary: , boundary_error: 0.1408
+category: , ACC: 0.8972
+category: , category_error: 0.1028
+Number  : , predict_nums: 4155
+Number  : , boundary_right_nums: 3570
+Number  : , true_entity_sum: 5116
+***** The Train 0 Epoch Loss is 0.7079400176365295 *****
+***** The Train BIO Class 0 Epoch Loss is 0.3194669783115387 *****
+***** The Train CLS Class 0 Epoch Loss is 0.3202997148036957 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.3608000476153628 *****
+***** The dev BIO Class Loss is 0.08850903809070587 *****
+***** The dev ClS Class Loss is 0.10921242833137512 *****
+  The 1 Epochs
+per:     , P: 0.8109, R: 0.8388, F1: 0.8246 
+loc:     , P: 0.8051, R: 0.7912, F1: 0.7981 
+org:     , P: 0.5401, R: 0.6275, F1: 0.5805 
+misc:    , P: 0.2487, R: 0.2146, F1: 0.2304 
+step: 1000, P: 0.6910, R: 0.7000, F1: 0.6955 
+boundary: , P: 0.7731, R: 0.7831, F1: 0.7781 
+boundary: , boundary_error: 0.2269
+category: , ACC: 0.8939
+category: , category_error: 0.1061
+Number  : , predict_nums: 1560
+Number  : , boundary_right_nums: 1206
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.331285974560008 *****
+***** The test BIO Class Loss is 0.08316492289304733 *****
+***** The test ClS Class Loss is 0.1034911572933197 *****
+  The 1 Epochs
+per:     , P: 0.8476, R: 0.8597, F1: 0.8536 
+loc:     , P: 0.7990, R: 0.7755, F1: 0.7871 
+org:     , P: 0.5408, R: 0.6400, F1: 0.5862 
+misc:    , P: 0.3355, R: 0.2873, F1: 0.3095 
+step: 1000, P: 0.7108, R: 0.7142, F1: 0.7125 
+boundary: , P: 0.7948, R: 0.7987, F1: 0.7967 
+boundary: , boundary_error: 0.2052
+category: , ACC: 0.8943
+category: , category_error: 0.1057
+Number  : , predict_nums: 5141
+Number  : , boundary_right_nums: 4086
+Number  : , true_entity_sum: 5116
+***** The Train 1 Epoch Loss is 0.2123322429486321 *****
+***** The Train BIO Class 1 Epoch Loss is 0.08746743947267532 *****
+***** The Train CLS Class 1 Epoch Loss is 0.1089627593755722 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.2386456883902992 *****
+***** The dev BIO Class Loss is 0.09738500416278839 *****
+***** The dev ClS Class Loss is 0.1182965636253357 *****
+  The 2 Epochs
+per:     , P: 0.6501, R: 0.8786, F1: 0.7473 
+loc:     , P: 0.7985, R: 0.6303, F1: 0.7045 
+org:     , P: 0.4136, R: 0.5425, F1: 0.4694 
+misc:    , P: 0.2609, R: 0.0274, F1: 0.0496 
+step: 1500, P: 0.6339, R: 0.6195, F1: 0.6266 
+boundary: , P: 0.7674, R: 0.7500, F1: 0.7586 
+boundary: , boundary_error: 0.2326
+category: , ACC: 0.8260
+category: , category_error: 0.1740
+Number  : , predict_nums: 1505
+Number  : , boundary_right_nums: 1155
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.22650652309463196 *****
+***** The test BIO Class Loss is 0.09024106711149216 *****
+***** The test ClS Class Loss is 0.11401808261871338 *****
+  The 2 Epochs
+per:     , P: 0.6852, R: 0.8921, F1: 0.7751 
+loc:     , P: 0.8120, R: 0.6424, F1: 0.7173 
+org:     , P: 0.4056, R: 0.5149, F1: 0.4538 
+misc:    , P: 0.4328, R: 0.0401, F1: 0.0733 
+step: 1500, P: 0.6562, R: 0.6253, F1: 0.6404 
+boundary: , P: 0.7893, R: 0.7522, F1: 0.7703 
+boundary: , boundary_error: 0.2107
+category: , ACC: 0.8313
+category: , category_error: 0.1687
+Number  : , predict_nums: 4875
+Number  : , boundary_right_nums: 3848
+Number  : , true_entity_sum: 5116
+***** The Train 2 Epoch Loss is 0.19959563441492453 *****
+***** The Train BIO Class 2 Epoch Loss is 0.0647430419921875 *****
+***** The Train CLS Class 2 Epoch Loss is 0.08597198128700256 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.22303202220674365 *****
+***** The dev BIO Class Loss is 0.09568614512681961 *****
+***** The dev ClS Class Loss is 0.11295625567436218 *****
+  The 3 Epochs
+per:     , P: 0.7610, R: 0.8134, F1: 0.7863 
+loc:     , P: 0.8268, R: 0.7682, F1: 0.7964 
+org:     , P: 0.4877, R: 0.7206, F1: 0.5817 
+misc:    , P: 0.3333, R: 0.1553, F1: 0.2118 
+step: 2000, P: 0.6887, R: 0.6896, F1: 0.6892 
+boundary: , P: 0.7750, R: 0.7760, F1: 0.7755 
+boundary: , boundary_error: 0.2250
+category: , ACC: 0.8887
+category: , category_error: 0.1113
+Number  : , predict_nums: 1542
+Number  : , boundary_right_nums: 1195
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.2156605213486958 *****
+***** The test BIO Class Loss is 0.0912679135799408 *****
+***** The test ClS Class Loss is 0.11037762463092804 *****
+  The 3 Epochs
+per:     , P: 0.8088, R: 0.8230, F1: 0.8159 
+loc:     , P: 0.8324, R: 0.7674, F1: 0.7986 
+org:     , P: 0.4727, R: 0.7008, F1: 0.5646 
+misc:    , P: 0.4583, R: 0.1975, F1: 0.2761 
+step: 2000, P: 0.7109, R: 0.6957, F1: 0.7032 
+boundary: , P: 0.8016, R: 0.7844, F1: 0.7929 
+boundary: , boundary_error: 0.1984
+category: , ACC: 0.8869
+category: , category_error: 0.1131
+Number  : , predict_nums: 5006
+Number  : , boundary_right_nums: 4013
+Number  : , true_entity_sum: 5116
+***** The Train 3 Epoch Loss is 0.16011676571718259 *****
+***** The Train BIO Class 3 Epoch Loss is 0.046292681246995926 *****
+***** The Train CLS Class 3 Epoch Loss is 0.06358224898576736 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.2352768630089779 *****
+***** The dev BIO Class Loss is 0.12396708130836487 *****
+***** The dev ClS Class Loss is 0.14154914021492004 *****
+  The 4 Epochs
+per:     , P: 0.8105, R: 0.8370, F1: 0.8235 
+loc:     , P: 0.8185, R: 0.8123, F1: 0.8154 
+org:     , P: 0.6395, R: 0.6032, F1: 0.6208 
+misc:    , P: 0.2920, R: 0.1826, F1: 0.2247 
+step: 2500, P: 0.7373, R: 0.6981, F1: 0.7171 
+boundary: , P: 0.8121, R: 0.7688, F1: 0.7899 
+boundary: , boundary_error: 0.1879
+category: , ACC: 0.9079
+category: , category_error: 0.0921
+Number  : , predict_nums: 1458
+Number  : , boundary_right_nums: 1184
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.2248956649609972 *****
+***** The test BIO Class Loss is 0.11807046085596085 *****
+***** The test ClS Class Loss is 0.13796629011631012 *****
+  The 4 Epochs
+per:     , P: 0.8459, R: 0.8362, F1: 0.8410 
+loc:     , P: 0.8275, R: 0.8218, F1: 0.8246 
+org:     , P: 0.6499, R: 0.5995, F1: 0.6237 
+misc:    , P: 0.3860, R: 0.2431, F1: 0.2983 
+step: 2500, P: 0.7632, R: 0.7086, F1: 0.7348 
+boundary: , P: 0.8358, R: 0.7760, F1: 0.8048 
+boundary: , boundary_error: 0.1642
+category: , ACC: 0.9131
+category: , category_error: 0.0869
+Number  : , predict_nums: 4750
+Number  : , boundary_right_nums: 3970
+Number  : , true_entity_sum: 5116
+***** The Train 4 Epoch Loss is 0.10233920575156882 *****
+***** The Train BIO Class 4 Epoch Loss is 0.028958870097994804 *****
+***** The Train CLS Class 4 Epoch Loss is 0.040459394454956055 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.2545926896855235 *****
+***** The dev BIO Class Loss is 0.14841929078102112 *****
+***** The dev ClS Class Loss is 0.17802253365516663 *****
+  The 5 Epochs
+per:     , P: 0.8239, R: 0.8478, F1: 0.8357 
+loc:     , P: 0.7423, R: 0.8276, F1: 0.7826 
+org:     , P: 0.6118, R: 0.3765, F1: 0.4662 
+misc:    , P: 0.2803, R: 0.4429, F1: 0.3434 
+step: 3000, P: 0.6614, R: 0.7078, F1: 0.6838 
+boundary: , P: 0.7555, R: 0.8084, F1: 0.7811 
+boundary: , boundary_error: 0.2445
+category: , ACC: 0.8755
+category: , category_error: 0.1245
+Number  : , predict_nums: 1648
+Number  : , boundary_right_nums: 1245
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.23933519062091865 *****
+***** The test BIO Class Loss is 0.1419885754585266 *****
+***** The test ClS Class Loss is 0.17330847680568695 *****
+  The 5 Epochs
+per:     , P: 0.8518, R: 0.8690, F1: 0.8603 
+loc:     , P: 0.7646, R: 0.8779, F1: 0.8173 
+org:     , P: 0.6647, R: 0.4112, F1: 0.5081 
+misc:    , P: 0.2804, R: 0.4075, F1: 0.3322 
+step: 3000, P: 0.6910, R: 0.7316, F1: 0.7107 
+boundary: , P: 0.7836, R: 0.8297, F1: 0.8060 
+boundary: , boundary_error: 0.2164
+category: , ACC: 0.8817
+category: , category_error: 0.1183
+Number  : , predict_nums: 5417
+Number  : , boundary_right_nums: 4245
+Number  : , true_entity_sum: 5116
+***** The Train 5 Epoch Loss is 0.06230747783981182 *****
+***** The Train BIO Class 5 Epoch Loss is 0.017108703032135963 *****
+***** The Train CLS Class 5 Epoch Loss is 0.023586148396134377 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.23647057235000596 *****
+***** The dev BIO Class Loss is 0.17735512554645538 *****
+***** The dev ClS Class Loss is 0.20377999544143677 *****
+  The 6 Epochs
+per:     , P: 0.8288, R: 0.8243, F1: 0.8265 
+loc:     , P: 0.7852, R: 0.8123, F1: 0.7985 
+org:     , P: 0.5714, R: 0.6478, F1: 0.6072 
+misc:    , P: 0.4162, R: 0.3744, F1: 0.3942 
+step: 3500, P: 0.7158, R: 0.7279, F1: 0.7218 
+boundary: , P: 0.7969, R: 0.8104, F1: 0.8036 
+boundary: , boundary_error: 0.2031
+category: , ACC: 0.8982
+category: , category_error: 0.1018
+Number  : , predict_nums: 1566
+Number  : , boundary_right_nums: 1248
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.22292020657092346 *****
+***** The test BIO Class Loss is 0.16857513785362244 *****
+***** The test ClS Class Loss is 0.19641417264938354 *****
+  The 6 Epochs
+per:     , P: 0.8665, R: 0.8427, F1: 0.8544 
+loc:     , P: 0.8141, R: 0.8235, F1: 0.8188 
+org:     , P: 0.5912, R: 0.6758, F1: 0.6307 
+misc:    , P: 0.4500, R: 0.4227, F1: 0.4359 
+step: 3500, P: 0.7427, R: 0.7494, F1: 0.7461 
+boundary: , P: 0.8212, R: 0.8286, F1: 0.8249 
+boundary: , boundary_error: 0.1788
+category: , ACC: 0.9045
+category: , category_error: 0.0955
+Number  : , predict_nums: 5162
+Number  : , boundary_right_nums: 4239
+Number  : , true_entity_sum: 5116
+***** The Train 6 Epoch Loss is 0.050602807901110984 *****
+***** The Train BIO Class 6 Epoch Loss is 0.01289105974137783 *****
+***** The Train CLS Class 6 Epoch Loss is 0.01644732803106308 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.26579286825032006 *****
+***** The dev BIO Class Loss is 0.1924220472574234 *****
+***** The dev ClS Class Loss is 0.21428057551383972 *****
+  The 7 Epochs
+per:     , P: 0.8426, R: 0.8243, F1: 0.8333 
+loc:     , P: 0.8458, R: 0.7989, F1: 0.8217 
+org:     , P: 0.6514, R: 0.5749, F1: 0.6108 
+misc:    , P: 0.3806, R: 0.4292, F1: 0.4034 
+step: 4000, P: 0.7397, R: 0.7195, F1: 0.7294 
+boundary: , P: 0.8151, R: 0.7929, F1: 0.8038 
+boundary: , boundary_error: 0.1849
+category: , ACC: 0.9075
+category: , category_error: 0.0925
+Number  : , predict_nums: 1498
+Number  : , boundary_right_nums: 1221
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.2630864072421449 *****
+***** The test BIO Class Loss is 0.19231249392032623 *****
+***** The test ClS Class Loss is 0.2144887000322342 *****
+  The 7 Epochs
+per:     , P: 0.8681, R: 0.8225, F1: 0.8447 
+loc:     , P: 0.8428, R: 0.8003, F1: 0.8210 
+org:     , P: 0.6374, R: 0.6055, F1: 0.6210 
+misc:    , P: 0.4135, R: 0.4558, F1: 0.4336 
+step: 4000, P: 0.7496, R: 0.7275, F1: 0.7384 
+boundary: , P: 0.8316, R: 0.8071, F1: 0.8192 
+boundary: , boundary_error: 0.1684
+category: , ACC: 0.9014
+category: , category_error: 0.0986
+Number  : , predict_nums: 4965
+Number  : , boundary_right_nums: 4129
+Number  : , true_entity_sum: 5116
+***** The Train 7 Epoch Loss is 0.03253332979444397 *****
+***** The Train BIO Class 7 Epoch Loss is 0.00872747041285038 *****
+***** The Train CLS Class 7 Epoch Loss is 0.010822336189448833 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.2859226954094465 *****
+***** The dev BIO Class Loss is 0.2304632067680359 *****
+***** The dev ClS Class Loss is 0.25787362456321716 *****
+  The 8 Epochs
+per:     , P: 0.7802, R: 0.8551, F1: 0.8159 
+loc:     , P: 0.8041, R: 0.8257, F1: 0.8147 
+org:     , P: 0.6413, R: 0.5789, F1: 0.6085 
+misc:    , P: 0.4383, R: 0.3242, F1: 0.3727 
+step: 4500, P: 0.7320, R: 0.7253, F1: 0.7286 
+boundary: , P: 0.8067, R: 0.7994, F1: 0.8030 
+boundary: , boundary_error: 0.1933
+category: , ACC: 0.9074
+category: , category_error: 0.0926
+Number  : , predict_nums: 1526
+Number  : , boundary_right_nums: 1231
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.2658505584325053 *****
+***** The test BIO Class Loss is 0.22533221542835236 *****
+***** The test ClS Class Loss is 0.2509668171405792 *****
+  The 8 Epochs
+per:     , P: 0.8276, R: 0.8811, F1: 0.8535 
+loc:     , P: 0.8163, R: 0.8409, F1: 0.8284 
+org:     , P: 0.6972, R: 0.6174, F1: 0.6549 
+misc:    , P: 0.5052, R: 0.4006, F1: 0.4468 
+step: 4500, P: 0.7677, R: 0.7563, F1: 0.7619 
+boundary: , P: 0.8343, R: 0.8219, F1: 0.8281 
+boundary: , boundary_error: 0.1657
+category: , ACC: 0.9201
+category: , category_error: 0.0799
+Number  : , predict_nums: 5040
+Number  : , boundary_right_nums: 4205
+Number  : , true_entity_sum: 5116
+***** The Train 8 Epoch Loss is 0.0249007457485328 *****
+***** The Train BIO Class 8 Epoch Loss is 0.006398211698979139 *****
+***** The Train CLS Class 8 Epoch Loss is 0.008401916362345219 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.28901013520155705 *****
+***** The dev BIO Class Loss is 0.24174600839614868 *****
+***** The dev ClS Class Loss is 0.2725491523742676 *****
+  The 9 Epochs
+per:     , P: 0.8292, R: 0.8533, F1: 0.8411 
+loc:     , P: 0.8121, R: 0.8199, F1: 0.8160 
+org:     , P: 0.6056, R: 0.6154, F1: 0.6104 
+misc:    , P: 0.3622, R: 0.4201, F1: 0.3890 
+step: 5000, P: 0.7144, R: 0.7422, F1: 0.7280 
+boundary: , P: 0.7925, R: 0.8234, F1: 0.8076 
+boundary: , boundary_error: 0.2075
+category: , ACC: 0.9014
+category: , category_error: 0.0986
+Number  : , predict_nums: 1600
+Number  : , boundary_right_nums: 1268
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.2742946577913137 *****
+***** The test BIO Class Loss is 0.23589840531349182 *****
+***** The test ClS Class Loss is 0.2658901810646057 *****
+  The 9 Epochs
+per:     , P: 0.8697, R: 0.8740, F1: 0.8718 
+loc:     , P: 0.8245, R: 0.8403, F1: 0.8323 
+org:     , P: 0.6435, R: 0.6281, F1: 0.6357 
+misc:    , P: 0.4078, R: 0.4793, F1: 0.4406 
+step: 5000, P: 0.7447, R: 0.7664, F1: 0.7554 
+boundary: , P: 0.8125, R: 0.8362, F1: 0.8242 
+boundary: , boundary_error: 0.1875
+category: , ACC: 0.9165
+category: , category_error: 0.0835
+Number  : , predict_nums: 5265
+Number  : , boundary_right_nums: 4278
+Number  : , true_entity_sum: 5116
+***** The Train 9 Epoch Loss is 0.013427043466257244 *****
+***** The Train BIO Class 9 Epoch Loss is 0.0037144545931369066 *****
+***** The Train CLS Class 9 Epoch Loss is 0.003920101560652256 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.29676667686491726 *****
+***** The dev BIO Class Loss is 0.2580786943435669 *****
+***** The dev ClS Class Loss is 0.2850927412509918 *****
+  The 10 Epochs
+per:     , P: 0.8325, R: 0.8551, F1: 0.8436 
+loc:     , P: 0.8320, R: 0.8161, F1: 0.8240 
+org:     , P: 0.6320, R: 0.5911, F1: 0.6109 
+misc:    , P: 0.4203, R: 0.3973, F1: 0.4085 
+step: 5500, P: 0.7456, R: 0.7344, F1: 0.7399 
+boundary: , P: 0.8207, R: 0.8084, F1: 0.8145 
+boundary: , boundary_error: 0.1793
+category: , ACC: 0.9084
+category: , category_error: 0.0916
+Number  : , predict_nums: 1517
+Number  : , boundary_right_nums: 1245
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.2803363648191548 *****
+***** The test BIO Class Loss is 0.25257110595703125 *****
+***** The test ClS Class Loss is 0.27396389842033386 *****
+  The 10 Epochs
+per:     , P: 0.8585, R: 0.8745, F1: 0.8664 
+loc:     , P: 0.8480, R: 0.8299, F1: 0.8388 
+org:     , P: 0.6787, R: 0.6520, F1: 0.6650 
+misc:    , P: 0.4528, R: 0.4434, F1: 0.4480 
+step: 5500, P: 0.7696, R: 0.7619, F1: 0.7657 
+boundary: , P: 0.8387, R: 0.8303, F1: 0.8345 
+boundary: , boundary_error: 0.1613
+category: , ACC: 0.9176
+category: , category_error: 0.0824
+Number  : , predict_nums: 5065
+Number  : , boundary_right_nums: 4248
+Number  : , true_entity_sum: 5116
+***** The Train 10 Epoch Loss is 0.0101690910142207 *****
+***** The Train BIO Class 10 Epoch Loss is 0.0029181684367358685 *****
+***** The Train CLS Class 10 Epoch Loss is 0.0032571707852184772 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.32345083463306146 *****
+***** The dev BIO Class Loss is 0.29460930824279785 *****
+***** The dev ClS Class Loss is 0.323477178812027 *****
+  The 11 Epochs
+per:     , P: 0.8370, R: 0.8370, F1: 0.8370 
+loc:     , P: 0.8045, R: 0.8199, F1: 0.8121 
+org:     , P: 0.6145, R: 0.6194, F1: 0.6169 
+misc:    , P: 0.4400, R: 0.3516, F1: 0.3909 
+step: 6000, P: 0.7427, R: 0.7273, F1: 0.7349 
+boundary: , P: 0.8143, R: 0.7974, F1: 0.8058 
+boundary: , boundary_error: 0.1857
+category: , ACC: 0.9121
+category: , category_error: 0.0879
+Number  : , predict_nums: 1508
+Number  : , boundary_right_nums: 1228
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.30703928401704095 *****
+***** The test BIO Class Loss is 0.2890837788581848 *****
+***** The test ClS Class Loss is 0.3186548054218292 *****
+  The 11 Epochs
+per:     , P: 0.8760, R: 0.8636, F1: 0.8698 
+loc:     , P: 0.8264, R: 0.8432, F1: 0.8347 
+org:     , P: 0.6491, R: 0.6615, F1: 0.6553 
+misc:    , P: 0.4633, R: 0.3923, F1: 0.4248 
+step: 6000, P: 0.7698, R: 0.7568, F1: 0.7633 
+boundary: , P: 0.8398, R: 0.8256, F1: 0.8326 
+boundary: , boundary_error: 0.1602
+category: , ACC: 0.9167
+category: , category_error: 0.0833
+Number  : , predict_nums: 5030
+Number  : , boundary_right_nums: 4224
+Number  : , true_entity_sum: 5116
+***** The Train 11 Epoch Loss is 0.007350692333331065 *****
+***** The Train BIO Class 11 Epoch Loss is 0.001957538304850459 *****
+***** The Train CLS Class 11 Epoch Loss is 0.0020269688684493303 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.34241219431221964 *****
+***** The dev BIO Class Loss is 0.3244815170764923 *****
+***** The dev ClS Class Loss is 0.3740868866443634 *****
+  The 12 Epochs
+per:     , P: 0.8315, R: 0.8406, F1: 0.8360 
+loc:     , P: 0.8011, R: 0.8257, F1: 0.8132 
+org:     , P: 0.6619, R: 0.5628, F1: 0.6083 
+misc:    , P: 0.4103, R: 0.3653, F1: 0.3865 
+step: 6500, P: 0.7422, R: 0.7234, F1: 0.7327 
+boundary: , P: 0.8161, R: 0.7955, F1: 0.8057 
+boundary: , boundary_error: 0.1839
+category: , ACC: 0.9094
+category: , category_error: 0.0906
+Number  : , predict_nums: 1501
+Number  : , boundary_right_nums: 1225
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.32323402295194825 *****
+***** The test BIO Class Loss is 0.3146105706691742 *****
+***** The test ClS Class Loss is 0.36510729789733887 *****
+  The 12 Epochs
+per:     , P: 0.8689, R: 0.8712, F1: 0.8700 
+loc:     , P: 0.8195, R: 0.8461, F1: 0.8326 
+org:     , P: 0.7367, R: 0.6103, F1: 0.6675 
+misc:    , P: 0.4658, R: 0.4227, F1: 0.4432 
+step: 6500, P: 0.7793, R: 0.7565, F1: 0.7677 
+boundary: , P: 0.8466, R: 0.8217, F1: 0.8340 
+boundary: , boundary_error: 0.1534
+category: , ACC: 0.9206
+category: , category_error: 0.0794
+Number  : , predict_nums: 4966
+Number  : , boundary_right_nums: 4204
+Number  : , true_entity_sum: 5116
+***** The Train 12 Epoch Loss is 0.003099644616617195 *****
+***** The Train BIO Class 12 Epoch Loss is 0.0009271464659832418 *****
+***** The Train CLS Class 12 Epoch Loss is 0.0008607687777839601 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.35023015787103967 *****
+***** The dev BIO Class Loss is 0.34065496921539307 *****
+***** The dev ClS Class Loss is 0.38729676604270935 *****
+  The 13 Epochs
+per:     , P: 0.8265, R: 0.8460, F1: 0.8362 
+loc:     , P: 0.8040, R: 0.8410, F1: 0.8221 
+org:     , P: 0.6829, R: 0.5668, F1: 0.6195 
+misc:    , P: 0.4375, R: 0.3836, F1: 0.4088 
+step: 7000, P: 0.7493, R: 0.7338, F1: 0.7415 
+boundary: , P: 0.8216, R: 0.8045, F1: 0.8130 
+boundary: , boundary_error: 0.1784
+category: , ACC: 0.9120
+category: , category_error: 0.0880
+Number  : , predict_nums: 1508
+Number  : , boundary_right_nums: 1239
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.3285534342979646 *****
+***** The test BIO Class Loss is 0.32865267992019653 *****
+***** The test ClS Class Loss is 0.37457069754600525 *****
+  The 13 Epochs
+per:     , P: 0.8701, R: 0.8773, F1: 0.8737 
+loc:     , P: 0.8131, R: 0.8634, F1: 0.8375 
+org:     , P: 0.7496, R: 0.6031, F1: 0.6684 
+misc:    , P: 0.4540, R: 0.4365, F1: 0.4451 
+step: 7000, P: 0.7759, R: 0.7652, F1: 0.7705 
+boundary: , P: 0.8432, R: 0.8317, F1: 0.8374 
+boundary: , boundary_error: 0.1568
+category: , ACC: 0.9201
+category: , category_error: 0.0799
+Number  : , predict_nums: 5046
+Number  : , boundary_right_nums: 4255
+Number  : , true_entity_sum: 5116
+***** The Train 13 Epoch Loss is 0.0023937439123165134 *****
+***** The Train BIO Class 13 Epoch Loss is 0.0007368445512838662 *****
+***** The Train CLS Class 13 Epoch Loss is 0.0007855825824663043 *****
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_dev_BertBottomVit8_256
+***** Running  dev *****
+  Num examples = 1000
+  Batch size = 8
+***** The dev Loss is 0.34756722546092444 *****
+***** The dev BIO Class Loss is 0.3305116593837738 *****
+***** The dev ClS Class Loss is 0.37521839141845703 *****
+  The 14 Epochs
+per:     , P: 0.8234, R: 0.8533, F1: 0.8381 
+loc:     , P: 0.8052, R: 0.8314, F1: 0.8181 
+org:     , P: 0.6457, R: 0.5830, F1: 0.6128 
+misc:    , P: 0.4313, R: 0.4155, F1: 0.4233 
+step: 7500, P: 0.7379, R: 0.7403, F1: 0.7391 
+boundary: , P: 0.8136, R: 0.8162, F1: 0.8149 
+boundary: , boundary_error: 0.1864
+category: , ACC: 0.9069
+category: , category_error: 0.0931
+Number  : , predict_nums: 1545
+Number  : , boundary_right_nums: 1257
+Number  : , true_entity_sum: 1540
+Loading features from cached file ./dataset/mner/twitter2015/cached_MNER_test_BertBottomVit8_256
+***** Running  test *****
+  Num examples = 3257
+  Batch size = 8
+***** The test Loss is 0.3252652474886096 *****
+***** The test BIO Class Loss is 0.31774523854255676 *****
+***** The test ClS Class Loss is 0.3620045781135559 *****
+  The 14 Epochs
+per:     , P: 0.8679, R: 0.8822, F1: 0.8750 
+loc:     , P: 0.8197, R: 0.8553, F1: 0.8372 
+org:     , P: 0.7198, R: 0.6186, F1: 0.6654 
+misc:    , P: 0.4397, R: 0.4586, F1: 0.4490 
+step: 7500, P: 0.7672, R: 0.7699, F1: 0.7686 
+boundary: , P: 0.8358, R: 0.8387, F1: 0.8373 
+boundary: , boundary_error: 0.1642
+category: , ACC: 0.9180
+category: , category_error: 0.0820
+Number  : , predict_nums: 5134
+Number  : , boundary_right_nums: 4291
+Number  : , true_entity_sum: 5116
+***** The Train 14 Epoch Loss is 0.0028287207829162946 *****
+***** The Train BIO Class 14 Epoch Loss is 0.0008523032884113491 *****
+***** The Train CLS Class 14 Epoch Loss is 0.0009914337424561381 *****
+***** the best dev results in 13 *****
+mner:   ,P: 0.7493, R: 0.7338, F1: 0.7415 
+bio:    , P: 0.8216, R: 0.8045, F1: 0.8130 
+category: , ACC: 0.9120
+***** the best dev-test results in 13 *****
+mner:   , P: 0.7759, R: 0.7652, F1: 0.7705 
+bio:    , P: 0.8432, R: 0.8317, F1: 0.8374 
+category: , ACC: 0.9201
+ global_step = 7500, average loss = 0.10591688597004262
+End Time is 2024-09-28 12:22:00
+Training complete in: 0:25:07.246140
