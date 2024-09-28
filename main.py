@@ -32,10 +32,6 @@ from tools.common import seed_everything
 from tools.progressbar import ProgressBar
 import wandb
 
-import processors.utils as utils
-import sys
-sys.modules['processors.utils_obj'] = utils
-
 dataset_name = "twitter17" # twitter15, twitter17
 wandb.init(
     project="MNER-BERT-{}-final".format(dataset_name),
